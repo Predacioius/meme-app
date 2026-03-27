@@ -165,8 +165,8 @@ autoUpdater.autoDownload = false;
     });
 
     autoUpdater.on('error', (err) => {
-    dialog.showErrorBox('Update Error', err == null ? 'unknown' : (err.stack || err).toString());
-});
+        console.error('Updater Error:', err);
+    });
 
 ipcMain.handle('check-for-update', () => {
     autoUpdater.checkForUpdates();
