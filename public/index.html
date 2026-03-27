@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meme Creator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Alice&family=Almendra:ital,wght@0,400;0,700;1,400;1,700&family=Anton&family=Archivo+Black&family=Bangers&family=Bebas+Neue&family=Berkshire+Swash&family=Black+Ops+One&family=Caveat&family=Cinzel:wght@400;700;900&family=Comic+Neue:wght@700&family=Cormorant+Garamond:wght@400;700&family=Eagle+Lake&family=Fjalla+One&family=Henny+Penny&family=IM+Fell+English&family=Indie+Flower&family=Lato:wght@400;700;900&family=Lobster&family=Luckiest+Guy&family=Macondo&family=Meddon&family=Merriweather:wght@400;700;900&family=Montserrat:wght@400;700;900&family=Nunito:wght@400;700;900&family=Oswald:wght@400;600;700&family=Pacifico&family=Patrick+Hand&family=Permanent+Marker&family=Playfair+Display:wght@400;700;900&family=Poppins:wght@400;700;900&family=Press+Start+2P&family=PT+Sans:wght@400;700&family=Raleway:wght@400;700;900&family=Roboto+Slab:wght@400;700;900&family=Rubik:wght@400;700;900&family=Russo+One&family=Special+Elite&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="meme-creator-styles.css">
+</head>
+<body>
+
+    <div id="app-wrapper" class="auth-shell">
+  <div class="auth-card">
+    <div class="meme-creator-brand auth-brand-center">
+      <div class="meme-creator-mark">TMC</div>
+      <div class="meme-creator-wordmark">
+        <div class="meme-creator-title">The Meme Creator</div>
+        <div class="meme-creator-sub">Pro-Tools</div>
+      </div>
+    </div>
+
+    <div class="auth-tabs" id="authTabs">
+      <button type="button" class="auth-tab active" data-tab="login" id="loginTabBtn">Log in</button>
+      <button type="button" class="auth-tab" data-tab="signup" id="signupTabBtn">Sign up</button>
+    </div>
+
+    <form id="loginForm" class="auth-form active" autocomplete="on">
+  <label class="auth-label" for="loginEmail">
+    <span style="display: block; font-weight: 400; opacity: 0.8; margin-bottom: 4px;">
+      (Create your own account to save memes independently from other users)
+    </span>
+    Email or Display Name
+  </label>
+  <input class="auth-input" id="loginEmail" name="email" type="text" autocomplete="username" required>
+
+  <label class="auth-label" for="loginPass">Password</label>
+      <input class="auth-input" id="loginPass" name="password" type="password" autocomplete="current-password" required>
+
+      <button type="submit" class="btn-public auth-primary">Log in</button>
+    </form>
+
+    <form id="signupForm" class="auth-form" autocomplete="on">
+      <label class="auth-label" for="signupName">Display name</label>
+      <input class="auth-input" id="signupName" name="name" type="text" autocomplete="name" required>
+
+      <label class="auth-label" for="signupEmail">Email</label>
+      <input class="auth-input" id="signupEmail" name="email" type="email" autocomplete="email" required>
+
+      <label class="auth-label" for="signupPass">Password</label>
+<input class="auth-input" id="signupPass" name="password" type="password" autocomplete="new-password" required>
+
+<label class="auth-label" for="signupPassConfirm">Confirm password</label>
+<input class="auth-input" id="signupPassConfirm" name="password_confirm" type="password" autocomplete="new-password" required>
+
+<button type="submit" class="btn-public auth-primary">Create account</button>
+</form>
+
+    <div class="auth-divider"><span>or</span></div>
+
+    <input type="file" id="standaloneInput" class="is-hidden" multiple>
+    <button id="launchBtn" class="btn-public auth-guest-btn">Continue to Meme Creator on default account</button>
+  </div>
+
+  <script src="auth.js"></script>
+
+</div>
+
+
+    <div id="memeContainer"></div>
+
+    <script type="module" src="meme-creator.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Activate Meme Creator</title>
+</head>
+<body style="text-align: center; font-family: sans-serif; padding: 50px;">
+    <h2>Activate Meme Creator</h2>
+    <p>Please enter the license key sent to your email after purchase.</p>
+    
+    <input type="text" id="licenseKey" placeholder="Paste key here" style="width: 80%; padding: 10px;"><br><br>
+    <button id="activateBtn" style="padding: 10px 20px;">Unlock Full App</button>
+    
+    <p id="message"></p>
+    <br>
+    <a href="https://payhip.com/thememecreator" target="_blank" id="buyLink">Don't have a key? Buy one here.</a>
+
+    <script>
+        document.getElementById('activateBtn').addEventListener('click', async () => {
+            const key = document.getElementById('licenseKey').value;
+            const messageEl = document.getElementById('message');
+            
+            if (!key) {
+                messageEl.textContent = 'Please enter a key.';
+                messageEl.style.color = 'red';
+                return;
+            }
+
+            messageEl.textContent = 'Verifying...';
+            messageEl.style.color = 'black';
+
+            const isValid = await window.api.verifyLicense(key);
+            
+            if (isValid) {
+                messageEl.textContent = 'Success! Loading app...';
+                messageEl.style.color = 'green';
+                setTimeout(() => {
+                    window.location.href = 'index.html'; 
+                }, 1000);
+            } else {
+                messageEl.textContent = 'Invalid key. Please try again.';
+                messageEl.style.color = 'red';
+            }
+        });
+    </script>
+
+</body>
+</html>

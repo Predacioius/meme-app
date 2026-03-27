@@ -1,0 +1,79 @@
+{
+  "name": "meme-app",
+  "version": "1.0.0",
+  "description": "Pro-tools for meme creation.",
+  "main": "dist_app/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-code": "node esbuild.config.js",
+    "start": "npm run build-code && node dist_app/server.js",
+    "electron-dev": "npm run build-code && electron .",
+    "pack": "npm run build-code && electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@imgly/background-removal-node": "^1.4.5",
+    "archiver": "^7.0.1",
+    "axios": "^1.6.8",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "electron-store": "^8.2.0",
+    "electron-updater": "^6.8.3",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "express-session": "^1.18.2",
+    "helmet": "^8.1.0",
+    "multer": "^2.0.2",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "electron": "^40.6.1",
+    "electron-builder": "^26.8.1",
+    "esbuild": "^0.27.3"
+  },
+  "build": {
+    "appId": "com.memecreator.desktop",
+    "productName": "Meme Creator",
+    "asar": true,
+    "asarUnpack": [
+      "node_modules/@imgly/background-removal-node/**/*",
+      "node_modules/onnxruntime-node/**/*"
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "YOUR_GITHUB_USERNAME",
+        "repo": "YOUR_REPO_NAME"
+      }
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "dist_app/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "installerSidebar": "build/sidebar.bmp",
+      "installerHeader": "build/header.bmp"
+    },
+    "mac": {
+      "target": ["dmg", "zip"]
+    },
+    "linux": {
+      "target": ["AppImage", "deb"]
+    }
+  }
+}
