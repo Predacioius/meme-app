@@ -117,59 +117,32 @@ ipcMain.handle('is-licensed', () => {
 autoUpdater.autoDownload = false;
 
     autoUpdater.on('update-available', (info) => {
-        dialog.showMessageBox(mainWindow, {
-            type: 'info',
-            title: 'Update Available',
-            message: `Version ${info.version} is available. Would you like to download it now?`,
-            buttons: ['Yes', 'No']
-        }).then((result) => {
-            if (result.response === 0) {
-                dialog.showMessageBox(mainWindow, {
-                    type: 'info',
-                    title: 'Downloading Update',
-                    message: 'The update is now downloading in the background. The app icon on your taskbar will show the progress. You will be notified you when it is ready to install.'
-                });
-                autoUpdater.downloadUpdate();
-            }
-        });
-    });
-
-    autoUpdater.on('download-progress', (progressObj) => {
-        if (mainWindow) {
-            mainWindow.setProgressBar(progressObj.percent / 100);
+    dialog.showMessageBox(mainWindow, {
+        type: 'info',
+        title: 'Update Available',
+        message: 'Version ' + info.version + ' is available. Download now?',
+        buttons: ['Yes', 'No']
+    }).then((result) => {
+        if (result.response === 0) {
+            autoUpdater.downloadUpdate();
         }
     });
+});
 
-    autoUpdater.on('update-not-available', () => {
-        dialog.showMessageBox(mainWindow, {
-            type: 'info',
-            title: 'Up to Date',
-            message: 'You are already running the latest version.'
-        });
+autoUpdater.on('update-not-available', () => {
+    dialog.showMessageBox(mainWindow, {
+        type: 'info',
+        title: 'Meme Creator',
+        message: 'You are already running the latest version.'
     });
+});
 
-    autoUpdater.on('update-downloaded', () => {
-        if (mainWindow) {
-            mainWindow.setProgressBar(-1);
-        }
-        dialog.showMessageBox(mainWindow, {
-            type: 'info',
-            title: 'Update Ready',
-            message: 'The update has been downloaded. Restart the application to apply the updates.',
-            buttons: ['Restart', 'Later']
-        }).then((result) => {
-            if (result.response === 0) {
-                autoUpdater.quitAndInstall();
-            }
-        });
-    });
-
-    autoUpdater.on('error', (err) => {
-        console.error('Updater Error:', err);
-    });
+autoUpdater.on('error', (err) => {
+    console.error('Update Error:', err);
+});
 
 ipcMain.handle('check-for-update', () => {
-    autoUpdater.checkForUpdates();
+    autoUpdater.checkForUpdatesAndNotify();
 });
 
 app.whenReady().then(async () => {
