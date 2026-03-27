@@ -69,7 +69,7 @@
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": "always",
-      "allowDowngrade": true,
+      "guid": "e8d7f2b1-5c3a-4b9e-9d1a-7f8e9d0c1b2a",
       "uninstallDisplayName": "Meme Creator",
       "createStartMenuShortcut": true,
       "installerSidebar": "build/sidebar.bmp",
