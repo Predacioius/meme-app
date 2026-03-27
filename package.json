@@ -15,6 +15,10 @@
   "author": "Meme App Team <admin@meme-app.local>",
   "license": "ISC",
   "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Predacioius/meme-app.git"
+  },
   "dependencies": {
     "@imgly/background-removal-node": "^1.4.5",
     "archiver": "^7.0.1",
